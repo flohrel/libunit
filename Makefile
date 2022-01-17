@@ -15,7 +15,8 @@ SRC			=	print.c \
 				memory.c \
 				suite.c \
 				utils.c \
-				run.c
+				run.c \
+				time.c
 OBJ			=	$(SRC:%.c=$(OBJDIR)/%.o)
 
 CC			=	gcc

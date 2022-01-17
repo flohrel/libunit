@@ -10,19 +10,17 @@
 # define TEST_SUCCESS	0
 # define TEST_FAILED	-1
 	/** default parameters **/
-# define TIMEOUT		10
+# define TIME_LIMIT		10
 	/**	bitfield flags **/
-# define TIMER			0x01
-# define OUTPUT			0x02
-# define REGISTER		0x04
-# define ERRNO			0x08
-# define SIGNAL			0x10
+# define OUTPUT			0x01
+# define CHRONO			0x02
+# define TIMEOUT		0x04
 
 /*
 **			TYPEDEFS
 */
 	/** function pointers **/
-typedef int	(*test_out)(int);
+typedef int	(*test_out)(void);
 typedef int	(*test_simple)(void);
 	/** data **/
 typedef union u_test		t_test;
@@ -30,6 +28,7 @@ typedef struct s_param		t_param;
 typedef struct s_suite		t_suite;
 typedef struct s_unit		t_unit;
 typedef struct s_register	t_register;
+typedef struct s_chrono 	t_chrono;
 
 /*
 **			DATA
@@ -45,10 +44,13 @@ struct s_param
 {
 	int32_t			flags;
 	uint32_t		time_limit;
-	char const		*expected_output;
-	// t_register	saved_registers;
-	// int32_t		expected_errno;
-	// int32_t		expected_signal;
+	const char *	expected_output;
+};
+	/** exec time data **/
+struct  s_chrono
+{
+    clock_t		start;
+    clock_t		end;
 };
 	/** linked list of tests **/
 struct s_unit

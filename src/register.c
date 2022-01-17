@@ -19,7 +19,7 @@ void	save_registers(t_register *saved_reg)
 	saved_reg->r15 = r15;
 }
 
-bool	check_registers(t_register *saved_reg)
+int32_t	check_registers(t_register *saved_reg)
 {
 	register uint64_t	rbx	asm("rbx");
 	register uint64_t	rsp asm("rsp");
@@ -36,6 +36,6 @@ bool	check_registers(t_register *saved_reg)
 		saved_reg->r13 != r13 ||
 		saved_reg->r14 != r14 ||
 		saved_reg->r15 != r15)
-		return (false);
-	return (true);
+		return (-1);
+	return (0);
 }

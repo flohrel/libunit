@@ -69,8 +69,8 @@ void	add_test_simple(t_unit **suite, const char *test_name,
 	new_unit->name = test_name;
 	new_unit->test.simple = test;
 	new_unit->parameters.flags = 0;
-	set_flag(&new_unit->parameters.flags, TIMER);
-	new_unit->parameters.time_limit = TIMEOUT;
+	set_flag(&new_unit->parameters.flags, CHRONO);
+	new_unit->parameters.time_limit = TIME_LIMIT;
 	new_unit->next = NULL;
 	unit_list_add_back(suite, new_unit);
 }
@@ -88,7 +88,7 @@ void	add_test_output(t_unit **suite, const char *test_name,
 	new_unit->parameters.flags = 0;
 	set_flag(&new_unit->parameters.flags, OUTPUT);
 	new_unit->parameters.expected_output = expected_output;
-	set_flag(&new_unit->parameters.flags, TIMER);
+	set_flag(&new_unit->parameters.flags, CHRONO);
 	new_unit->parameters.time_limit = TIMEOUT;
 	new_unit->next = NULL;
 	unit_list_add_back(suite, new_unit);
