@@ -63,7 +63,6 @@ void	clean_exit(int32_t return_value)
 	t_suite **suite_list;
 
 	suite_list = get_suite_list();
-	printf("%s\n", (*suite_list)->ft_name);
 	clean_test_suite(*suite_list);
 	exit(return_value);
 }

@@ -13,9 +13,9 @@ SRC			=	print.c \
 				assert.c \
 				flag.c \
 				memory.c \
-				list.c \
 				suite.c \
-				utils.c
+				utils.c \
+				run.c
 OBJ			=	$(SRC:%.c=$(OBJDIR)/%.o)
 
 CC			=	gcc

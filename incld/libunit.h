@@ -20,12 +20,17 @@
 # include <stdarg.h>
 # include <limits.h>
 # include <stdio.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+# include <unistd.h>
 # include "defs.h"
 
 /*
 **		print.c
 */
 void	print_header(const char *str);
+void	print_signal(int32_t status);
+void	print_result(t_unit *unit, int32_t count);
 
 /*
 **		register.c
@@ -46,12 +51,11 @@ int32_t	assert_not_null(void *pointer, const char *message, ...);
 /*
 **		suite.c
 */
-void	add_suite(t_suite **suite_list, char const *ft_name,
-				void (*add_units)(t_unit **));
+void	add_suite(char const *ft_name, void (*add_units)(t_unit **));
 void	add_test_simple(t_unit **suite, char const *test_name,
 						test_simple test);
-void	add_test_output(t_unit **suite, char const *test_name,
-						test_out test);
+void	add_test_output(t_unit **suite, const char *test_name,
+						test_out test, const char *expected_output);
 
 /*
 **		memory.c
@@ -71,5 +75,10 @@ void	clear_flag(int32_t *field, int32_t flag);
 */
 size_t	ft_strlen(const char *s);
 t_suite	**get_suite_list(void);
+
+/*
+**		run.c
+*/
+void	run_all(void);
 
 #endif

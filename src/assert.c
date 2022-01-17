@@ -4,11 +4,11 @@ static int32_t	test_assert(bool condition, const char *message, va_list *ap)
 {
 	int32_t result;
 
-	result = TEST_FAILED;
+	result = EXIT_FAILURE;
 	if (condition == true)
-		result = TEST_SUCCESS;
+		result = EXIT_SUCCESS;
 	else
-		vfprintf(stdout, message, *ap);
+		vfprintf(stderr, message, *ap);
 	va_end(*ap);
 	return (result);
 }

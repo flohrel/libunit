@@ -10,7 +10,7 @@
 # define TEST_SUCCESS	0
 # define TEST_FAILED	-1
 	/** default parameters **/
-# define DEFAULT_TIMER	10
+# define TIMEOUT		10
 	/**	bitfield flags **/
 # define TIMER			0x01
 # define OUTPUT			0x02
@@ -22,7 +22,7 @@
 **			TYPEDEFS
 */
 	/** function pointers **/
-typedef int	(*test_out)(int *);
+typedef int	(*test_out)(int);
 typedef int	(*test_simple)(void);
 	/** data **/
 typedef union u_test		t_test;
@@ -45,8 +45,8 @@ struct s_param
 {
 	int32_t			flags;
 	uint32_t		time_limit;
+	char const		*expected_output;
 	// t_register	saved_registers;
-	// char const	*expected_output;
 	// int32_t		expected_errno;
 	// int32_t		expected_signal;
 };

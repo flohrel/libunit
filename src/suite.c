@@ -12,19 +12,12 @@
 
 #include "libunit.h"
 
-void	add_suite(t_suite **suite_list, const char *ft_name,
-						void (*add_unit)(t_unit **))
+static void	suite_list_add_back(t_suite	*new_suite)
 {
-	t_suite	*new_suite;
+	t_suite	**suite_list;
 	t_suite	*tmp;
 
-	new_suite = ft_calloc(1, sizeof(*new_suite));
-	if (new_suite == NULL)
-		clean_exit(EXIT_FAILURE);
-	new_suite->ft_name = ft_name;
-	new_suite->unit = NULL;
-	new_suite->next = NULL;
-	add_unit(&(new_suite->unit));
+	suite_list = get_suite_list();
 	if (*suite_list == NULL)
 		*suite_list = new_suite;
 	else
@@ -36,20 +29,24 @@ void	add_suite(t_suite **suite_list, const char *ft_name,
 	}
 }
 
-void	add_test_simple(t_unit **suite, const char *test_name,
-							test_simple test)
+void	add_suite(const char *ft_name, void (*add_unit)(t_unit **))
 {
-	t_unit	*new_unit;
+	t_suite	*new_suite;
+
+	new_suite = ft_calloc(1, sizeof(*new_suite));
+	if (new_suite == NULL)
+		clean_exit(EXIT_FAILURE);
+	new_suite->ft_name = ft_name;
+	new_suite->unit = NULL;
+	new_suite->next = NULL;
+	add_unit(&(new_suite->unit));
+	suite_list_add_back(new_suite);
+}
+
+static void	unit_list_add_back(t_unit **suite, t_unit *new_unit)
+{
 	t_unit	*tmp;
 
-	new_unit = ft_calloc(1, sizeof(*new_unit));
-	if (new_unit == NULL)
-		clean_exit(EXIT_FAILURE);
-	new_unit->name = test_name;
-	new_unit->test.simple = test;
-	set_flag(&new_unit->parameters.flags, TIMER);
-	new_unit->parameters.time_limit = DEFAULT_TIMER;
-	new_unit->next = NULL;
 	if (*suite == NULL)
 		*suite = new_unit;
 	else
@@ -61,13 +58,38 @@ void	add_test_simple(t_unit **suite, const char *test_name,
 	}
 }
 
-// void	add_test_output(const char *ft_name, const char *test_name,
-// 				test_out test)
-// {
-	
-// }
+void	add_test_simple(t_unit **suite, const char *test_name,
+						test_simple test)
+{
+	t_unit	*new_unit;
 
-// int		assert_output(int pipe_output, const char *expected)
-// {
-	
-// }
+	new_unit = ft_calloc(1, sizeof(*new_unit));
+	if (new_unit == NULL)
+		clean_exit(EXIT_FAILURE);
+	new_unit->name = test_name;
+	new_unit->test.simple = test;
+	new_unit->parameters.flags = 0;
+	set_flag(&new_unit->parameters.flags, TIMER);
+	new_unit->parameters.time_limit = TIMEOUT;
+	new_unit->next = NULL;
+	unit_list_add_back(suite, new_unit);
+}
+
+void	add_test_output(t_unit **suite, const char *test_name,
+						test_out test, const char *expected_output)
+{
+	t_unit	*new_unit;
+
+	new_unit = ft_calloc(1, sizeof(*new_unit));
+	if (new_unit == NULL)
+		clean_exit(EXIT_FAILURE);
+	new_unit->name = test_name;
+	new_unit->test.out = test;
+	new_unit->parameters.flags = 0;
+	set_flag(&new_unit->parameters.flags, OUTPUT);
+	new_unit->parameters.expected_output = expected_output;
+	set_flag(&new_unit->parameters.flags, TIMER);
+	new_unit->parameters.time_limit = TIMEOUT;
+	new_unit->next = NULL;
+	unit_list_add_back(suite, new_unit);
+}
