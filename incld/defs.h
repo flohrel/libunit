@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   defs.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/28 20:43:00 by flohrel           #+#    #+#             */
+/*   Updated: 2022/01/28 20:44:17 by flohrel          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef DEFS_H
 # define DEFS_H
 
@@ -20,29 +32,29 @@
 **			TYPEDEFS
 */
 	/** function pointers **/
-typedef int	(*t_test)(void);
+typedef int					(*t_test)(void);
 	/** data **/
 typedef struct s_param		t_param;
 typedef struct s_suite		t_suite;
 typedef struct s_unit		t_unit;
 typedef struct s_saved_reg	t_saved_reg;
-typedef struct s_chrono 	t_chrono;
+typedef struct s_chrono		t_chrono;
 
 /*
 **			DATA
 */
-	/**	parameters of test **/
+	/** parameters of test **/
 struct s_param
 {
-	int32_t			flags;
-	uint32_t		time_limit;
-	const char *	expected_output;
+	int32_t		flags;
+	uint32_t	time_limit;
+	const char	*expected_output;
 };
 	/** exec time data **/
-struct  s_chrono
+struct s_chrono
 {
-    clock_t		start;
-    clock_t		end;
+	clock_t		start;
+	clock_t		end;
 };
 	/** linked list of tests **/
 struct s_unit
