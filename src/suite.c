@@ -58,8 +58,7 @@ static void	unit_list_add_back(t_unit **suite, t_unit *new_unit)
 	}
 }
 
-void	add_test_simple(t_unit **suite, const char *test_name,
-						test_simple test)
+void	suite_add_test(t_unit **suite, const char *test_name, t_test test, int32_t flags)
 {
 	t_unit	*new_unit;
 
@@ -67,29 +66,9 @@ void	add_test_simple(t_unit **suite, const char *test_name,
 	if (new_unit == NULL)
 		clean_exit(EXIT_FAILURE);
 	new_unit->name = test_name;
-	new_unit->test.simple = test;
-	new_unit->parameters.flags = 0;
-	set_flag(&new_unit->parameters.flags, CHRONO);
+	new_unit->test = test;
+	set_flag(&new_unit->parameters.flags, flags | CHRONO);
 	new_unit->parameters.time_limit = TIME_LIMIT;
-	new_unit->next = NULL;
-	unit_list_add_back(suite, new_unit);
-}
-
-void	add_test_output(t_unit **suite, const char *test_name,
-						test_out test, const char *expected_output)
-{
-	t_unit	*new_unit;
-
-	new_unit = ft_calloc(1, sizeof(*new_unit));
-	if (new_unit == NULL)
-		clean_exit(EXIT_FAILURE);
-	new_unit->name = test_name;
-	new_unit->test.out = test;
-	new_unit->parameters.flags = 0;
-	set_flag(&new_unit->parameters.flags, OUTPUT);
-	new_unit->parameters.expected_output = expected_output;
-	set_flag(&new_unit->parameters.flags, CHRONO);
-	new_unit->parameters.time_limit = TIMEOUT;
 	new_unit->next = NULL;
 	unit_list_add_back(suite, new_unit);
 }

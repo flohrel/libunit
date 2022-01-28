@@ -6,7 +6,7 @@ t_suite	**get_suite_list(void)
 	return (&suite_list);
 }
 
-size_t	ft_strlen(const char *s)
+size_t	f_strlen(const char *s)
 {
 	const char	*str;
 
@@ -15,4 +15,16 @@ size_t	ft_strlen(const char *s)
 		while (*str++)
 			;
 	return (str - s - 1);
+}
+
+int     f_strcmp(const char *s1, const char *s2)
+{
+    while (*s1)
+    {
+        if (*s1 != *s2)
+            break ;
+        s1++;
+        s2++;
+    }
+    return (*(unsigned char *)s1 - *(unsigned char *)s2);
 }

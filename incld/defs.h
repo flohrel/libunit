@@ -20,10 +20,8 @@
 **			TYPEDEFS
 */
 	/** function pointers **/
-typedef int	(*test_out)(void);
-typedef int	(*test_simple)(void);
+typedef int	(*t_test)(void);
 	/** data **/
-typedef union u_test		t_test;
 typedef struct s_param		t_param;
 typedef struct s_suite		t_suite;
 typedef struct s_unit		t_unit;
@@ -33,12 +31,6 @@ typedef struct s_chrono 	t_chrono;
 /*
 **			DATA
 */
-	/** test function **/
-union	u_test
-{
-	test_out	out;
-	test_simple	simple;
-};
 	/**	parameters of test **/
 struct s_param
 {

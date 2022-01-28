@@ -32,7 +32,7 @@ void	print_result(t_unit *unit, int32_t count)
 		{
 			fprintf(stdout, GRN"%20s", "[OK]");
 			if (check_flag(unit->parameters.flags, CHRONO))
-				fprintf(stdout, RESET" in %.3fms", get_execution_time());
+				fprintf(stdout, RESET" %.3fms", get_execution_time());
 		}
 		else
 			fprintf(stdout, RED"%20s", "[KO]");
@@ -50,7 +50,7 @@ void	print_header(const char *str)
 	size_t		len;
 
 	i = 0;
-	len = ft_strlen(str) + 20;
+	len = f_strlen(str) + 20;
 	fprintf(stdout, MAG"\t");
 	while (i++ < len)
 		fprintf(stdout, "#");

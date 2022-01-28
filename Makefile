@@ -11,6 +11,8 @@ INCLDIR		=	incld
 SRC			=	print.c \
 				register.c \
 				assert.c \
+				assert2.c \
+				assert3.c \
 				flag.c \
 				memory.c \
 				suite.c \

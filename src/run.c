@@ -4,11 +4,7 @@ void	run_test(t_unit *unit)
 {
 	int32_t	return_value;
 
-	if (check_flag(unit->parameters.flags, OUTPUT))
-		return_value = unit->test.out();
-	else
-		return_value = unit->test.simple();
-	sleep(1);
+	return_value = unit->test();
 	exit(return_value);
 }
 
