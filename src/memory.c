@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   memory.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/28 19:49:43 by flohrel           #+#    #+#             */
+/*   Updated: 2022/01/28 19:50:20 by flohrel          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libunit.h"
 
 static void	*ft_memset(void *s, int c, size_t n)
@@ -60,7 +72,7 @@ static void	clean_test_suite(t_suite *suite_list)
 
 void	clean_exit(int32_t return_value)
 {
-	t_suite **suite_list;
+	t_suite	**suite_list;
 
 	suite_list = get_suite_list();
 	clean_test_suite(*suite_list);

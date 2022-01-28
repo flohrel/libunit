@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   suite.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flohrel <flohrel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 08:21:54 by flohrel           #+#    #+#             */
-/*   Updated: 2022/01/13 08:58:08 by flohrel          ###   ########.fr       */
+/*   Updated: 2022/01/28 20:26:30 by flohrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libunit.h"
 
-static void	suite_list_add_back(t_suite	*new_suite)
+static void	suite_list_add_back(t_suite *new_suite)
 {
 	t_suite	**suite_list;
 	t_suite	*tmp;
@@ -58,7 +58,8 @@ static void	unit_list_add_back(t_unit **suite, t_unit *new_unit)
 	}
 }
 
-void	suite_add_test(t_unit **suite, const char *test_name, t_test test, int32_t flags)
+void	suite_add_test(t_unit **suite, const char *test_name, t_test test,
+			int32_t flags)
 {
 	t_unit	*new_unit;
 
